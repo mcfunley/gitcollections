@@ -12,26 +12,7 @@
 </div>
 
 <% unless @issues.empty? %>
-  <table class="table">
-    <caption><%= @project.name %>'s Issues</caption>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Url</th>
-        <th>Labels</th>
-        <th>Project</th>
-      </tr>
-    </thead>
 
-    <tbody>
-      <% @issues.each do |issue| %>
-        <tr>
-          <td><%= link_to issue.title , issue%></td>
-          <td><%= issue.url %></td>
-          <td><%= issue.label_string %></td>
-          <td><%= link_to issue.project.name, issue.project %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <%= react_component('Issues', @issues, {prerender: true}) %>
+
 <% end %>

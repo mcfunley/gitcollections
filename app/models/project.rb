@@ -10,15 +10,12 @@ class Project < ActiveRecord::Base
   end
 
   def update_issues
+    Issue.where(project_id: self.id).destroy_all
+
     gh_project = GithubProject.new(self.url)
     unless gh_project.issues.blank?
       gh_project.issues.map do |issue|
-        exisiting_issue = Issue.where(project_id: self.id, url: issue.html_url).first
-        if exisiting_issue
-          exisiting_issue.update(title: issue.title, labels: labels(issue.labels))
-        else
-          Issue.create(title: issue.title, project: self, url: issue.html_url, labels: labels(issue.labels))
-        end
+        Issue.create(title: issue.title, project: self, url: issue.html_url, labels: labels(issue.labels))
       end
     end
   end

@@ -30,9 +30,13 @@ gem 'omniauth-github'
 # wrapper form github api
 gem "octokit"
 
+# delayed job
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
 gem 'daemons'
+
+# react
+gem 'react-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
